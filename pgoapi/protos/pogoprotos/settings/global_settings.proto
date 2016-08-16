@@ -6,6 +6,7 @@ import "pogoprotos/settings/fort_settings.proto";
 import "pogoprotos/settings/map_settings.proto";
 import "pogoprotos/settings/level_settings.proto";
 import "pogoprotos/settings/inventory_settings.proto";
+import "pogoprotos/settings/gps_settings.proto";
 
 message GlobalSettings {
 	pogoprotos.settings.FortSettings fort_settings = 2;
@@ -13,5 +14,6 @@ message GlobalSettings {
 	pogoprotos.settings.LevelSettings level_settings = 4;
 	pogoprotos.settings.InventorySettings inventory_settings = 5;
 	string minimum_client_version = 6;
+	pogoprotos.settings.GpsSettings gps_settings = 7;
 }
 

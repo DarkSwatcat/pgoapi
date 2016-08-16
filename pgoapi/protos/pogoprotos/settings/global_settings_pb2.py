@@ -17,15 +17,16 @@ from pogoprotos.settings import fort_settings_pb2 as pogoprotos_dot_settings_dot
 from pogoprotos.settings import map_settings_pb2 as pogoprotos_dot_settings_dot_map__settings__pb2
 from pogoprotos.settings import level_settings_pb2 as pogoprotos_dot_settings_dot_level__settings__pb2
 from pogoprotos.settings import inventory_settings_pb2 as pogoprotos_dot_settings_dot_inventory__settings__pb2
+from pogoprotos.settings import gps_settings_pb2 as pogoprotos_dot_settings_dot_gps__settings__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='pogoprotos/settings/global_settings.proto',
   package='pogoprotos.settings',
   syntax='proto3',
-  serialized_pb=_b('\n)pogoprotos/settings/global_settings.proto\x12\x13pogoprotos.settings\x1a\'pogoprotos/settings/fort_settings.proto\x1a&pogoprotos/settings/map_settings.proto\x1a(pogoprotos/settings/level_settings.proto\x1a,pogoprotos/settings/inventory_settings.proto\"\xa2\x02\n\x0eGlobalSettings\x12\x38\n\rfort_settings\x18\x02 \x01(\x0b\x32!.pogoprotos.settings.FortSettings\x12\x36\n\x0cmap_settings\x18\x03 \x01(\x0b\x32 .pogoprotos.settings.MapSettings\x12:\n\x0elevel_settings\x18\x04 \x01(\x0b\x32\".pogoprotos.settings.LevelSettings\x12\x42\n\x12inventory_settings\x18\x05 \x01(\x0b\x32&.pogoprotos.settings.InventorySettings\x12\x1e\n\x16minimum_client_version\x18\x06 \x01(\tb\x06proto3')
+  serialized_pb=_b('\n)pogoprotos/settings/global_settings.proto\x12\x13pogoprotos.settings\x1a\'pogoprotos/settings/fort_settings.proto\x1a&pogoprotos/settings/map_settings.proto\x1a(pogoprotos/settings/level_settings.proto\x1a,pogoprotos/settings/inventory_settings.proto\x1a&pogoprotos/settings/gps_settings.proto\"\xda\x02\n\x0eGlobalSettings\x12\x38\n\rfort_settings\x18\x02 \x01(\x0b\x32!.pogoprotos.settings.FortSettings\x12\x36\n\x0cmap_settings\x18\x03 \x01(\x0b\x32 .pogoprotos.settings.MapSettings\x12:\n\x0elevel_settings\x18\x04 \x01(\x0b\x32\".pogoprotos.settings.LevelSettings\x12\x42\n\x12inventory_settings\x18\x05 \x01(\x0b\x32&.pogoprotos.settings.InventorySettings\x12\x1e\n\x16minimum_client_version\x18\x06 \x01(\t\x12\x36\n\x0cgps_settings\x18\x07 \x01(\x0b\x32 .pogoprotos.settings.GpsSettingsb\x06proto3')
   ,
-  dependencies=[pogoprotos_dot_settings_dot_fort__settings__pb2.DESCRIPTOR,pogoprotos_dot_settings_dot_map__settings__pb2.DESCRIPTOR,pogoprotos_dot_settings_dot_level__settings__pb2.DESCRIPTOR,pogoprotos_dot_settings_dot_inventory__settings__pb2.DESCRIPTOR,])
+  dependencies=[pogoprotos_dot_settings_dot_fort__settings__pb2.DESCRIPTOR,pogoprotos_dot_settings_dot_map__settings__pb2.DESCRIPTOR,pogoprotos_dot_settings_dot_level__settings__pb2.DESCRIPTOR,pogoprotos_dot_settings_dot_inventory__settings__pb2.DESCRIPTOR,pogoprotos_dot_settings_dot_gps__settings__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -73,6 +74,13 @@ _GLOBALSETTINGS = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='gps_settings', full_name='pogoprotos.settings.GlobalSettings.gps_settings', index=5,
+      number=7, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -85,14 +93,15 @@ _GLOBALSETTINGS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=236,
-  serialized_end=526,
+  serialized_start=276,
+  serialized_end=622,
 )
 
 _GLOBALSETTINGS.fields_by_name['fort_settings'].message_type = pogoprotos_dot_settings_dot_fort__settings__pb2._FORTSETTINGS
 _GLOBALSETTINGS.fields_by_name['map_settings'].message_type = pogoprotos_dot_settings_dot_map__settings__pb2._MAPSETTINGS
 _GLOBALSETTINGS.fields_by_name['level_settings'].message_type = pogoprotos_dot_settings_dot_level__settings__pb2._LEVELSETTINGS
 _GLOBALSETTINGS.fields_by_name['inventory_settings'].message_type = pogoprotos_dot_settings_dot_inventory__settings__pb2._INVENTORYSETTINGS
+_GLOBALSETTINGS.fields_by_name['gps_settings'].message_type = pogoprotos_dot_settings_dot_gps__settings__pb2._GPSSETTINGS
 DESCRIPTOR.message_types_by_name['GlobalSettings'] = _GLOBALSETTINGS
 
 GlobalSettings = _reflection.GeneratedProtocolMessageType('GlobalSettings', (_message.Message,), dict(

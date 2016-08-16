@@ -13,17 +13,53 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
+from pogoprotos.networking.responses import fort_details_response_pb2 as pogoprotos_dot_networking_dot_responses_dot_fort__details__response__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='pogoprotos/networking/responses/add_fort_modifier_response.proto',
   package='pogoprotos.networking.responses',
   syntax='proto3',
-  serialized_pb=_b('\n@pogoprotos/networking/responses/add_fort_modifier_response.proto\x12\x1fpogoprotos.networking.responses\"\x19\n\x17\x41\x64\x64\x46ortModifierResponseb\x06proto3')
-)
+  serialized_pb=_b('\n@pogoprotos/networking/responses/add_fort_modifier_response.proto\x12\x1fpogoprotos.networking.responses\x1a;pogoprotos/networking/responses/fort_details_response.proto\"\xab\x02\n\x17\x41\x64\x64\x46ortModifierResponse\x12O\n\x06result\x18\x01 \x01(\x0e\x32?.pogoprotos.networking.responses.AddFortModifierResponse.Result\x12J\n\x0c\x66ort_details\x18\x02 \x01(\x0b\x32\x34.pogoprotos.networking.responses.FortDetailsResponse\"s\n\x06Result\x12\x11\n\rNO_RESULT_SET\x10\x00\x12\x0b\n\x07SUCCESS\x10\x01\x12\x1d\n\x19\x46ORT_ALREADY_HAS_MODIFIER\x10\x02\x12\x10\n\x0cTOO_FAR_AWAY\x10\x03\x12\x18\n\x14NO_ITEM_IN_INVENTORY\x10\x04\x62\x06proto3')
+  ,
+  dependencies=[pogoprotos_dot_networking_dot_responses_dot_fort__details__response__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
+
+_ADDFORTMODIFIERRESPONSE_RESULT = _descriptor.EnumDescriptor(
+  name='Result',
+  full_name='pogoprotos.networking.responses.AddFortModifierResponse.Result',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='NO_RESULT_SET', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='SUCCESS', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='FORT_ALREADY_HAS_MODIFIER', index=2, number=2,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='TOO_FAR_AWAY', index=3, number=3,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='NO_ITEM_IN_INVENTORY', index=4, number=4,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=347,
+  serialized_end=462,
+)
+_sym_db.RegisterEnumDescriptor(_ADDFORTMODIFIERRESPONSE_RESULT)
 
 
 _ADDFORTMODIFIERRESPONSE = _descriptor.Descriptor(
@@ -33,11 +69,26 @@ _ADDFORTMODIFIERRESPONSE = _descriptor.Descriptor(
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
+    _descriptor.FieldDescriptor(
+      name='result', full_name='pogoprotos.networking.responses.AddFortModifierResponse.result', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='fort_details', full_name='pogoprotos.networking.responses.AddFortModifierResponse.fort_details', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
   nested_types=[],
   enum_types=[
+    _ADDFORTMODIFIERRESPONSE_RESULT,
   ],
   options=None,
   is_extendable=False,
@@ -45,10 +96,13 @@ _ADDFORTMODIFIERRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=101,
-  serialized_end=126,
+  serialized_start=163,
+  serialized_end=462,
 )
 
+_ADDFORTMODIFIERRESPONSE.fields_by_name['result'].enum_type = _ADDFORTMODIFIERRESPONSE_RESULT
+_ADDFORTMODIFIERRESPONSE.fields_by_name['fort_details'].message_type = pogoprotos_dot_networking_dot_responses_dot_fort__details__response__pb2._FORTDETAILSRESPONSE
+_ADDFORTMODIFIERRESPONSE_RESULT.containing_type = _ADDFORTMODIFIERRESPONSE
 DESCRIPTOR.message_types_by_name['AddFortModifierResponse'] = _ADDFORTMODIFIERRESPONSE
 
 AddFortModifierResponse = _reflection.GeneratedProtocolMessageType('AddFortModifierResponse', (_message.Message,), dict(

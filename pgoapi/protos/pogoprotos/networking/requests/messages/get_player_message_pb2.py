@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='pogoprotos/networking/requests/messages/get_player_message.proto',
   package='pogoprotos.networking.requests.messages',
   syntax='proto3',
-  serialized_pb=_b('\n@pogoprotos/networking/requests/messages/get_player_message.proto\x12\'pogoprotos.networking.requests.messages\"\'\n\x10GetPlayerMessage\x12\x13\n\x0b\x61pp_version\x18\x01 \x01(\tb\x06proto3')
+  serialized_pb=_b('\n@pogoprotos/networking/requests/messages/get_player_message.proto\x12\'pogoprotos.networking.requests.messages\"\x12\n\x10GetPlayerMessageb\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -33,13 +33,6 @@ _GETPLAYERMESSAGE = _descriptor.Descriptor(
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
-    _descriptor.FieldDescriptor(
-      name='app_version', full_name='pogoprotos.networking.requests.messages.GetPlayerMessage.app_version', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
   ],
   extensions=[
   ],
@@ -53,7 +46,7 @@ _GETPLAYERMESSAGE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=109,
-  serialized_end=148,
+  serialized_end=127,
 )
 
 DESCRIPTOR.message_types_by_name['GetPlayerMessage'] = _GETPLAYERMESSAGE

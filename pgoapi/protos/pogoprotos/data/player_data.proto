@@ -22,5 +22,6 @@ message PlayerData {
 	pogoprotos.data.player.EquippedBadge equipped_badge = 12;
 	pogoprotos.data.player.ContactSettings contact_settings = 13;
 	repeated pogoprotos.data.player.Currency currencies = 14;
+	int32 remaining_codename_claims = 15;
 }
 

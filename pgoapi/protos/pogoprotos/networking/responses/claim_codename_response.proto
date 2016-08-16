@@ -2,11 +2,14 @@ syntax = "proto3";
 
 package pogoprotos.networking.responses;
 
+import "pogoprotos/data/player_data.proto";
+
 message ClaimCodenameResponse {
 	string codename = 1;
 	string user_message = 2;
 	bool is_assignable = 3;
 	pogoprotos.networking.responses.ClaimCodenameResponse.Status status = 4;
+	pogoprotos.data.PlayerData updated_player = 5;
 	enum Status {
 		UNSET = 0;
 		SUCCESS = 1;

@@ -3,7 +3,5 @@ syntax = "proto3";
 package pogoprotos.networking.requests.messages;
 
 message GetPlayerMessage {
-	// Human readable app version, e.g. "0.31.1"
-	string app_version = 1;
 }
 
