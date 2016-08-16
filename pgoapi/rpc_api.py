@@ -47,10 +47,11 @@ from pgoapi.exceptions import NotLoggedInException, ServerBusyOrOfflineException
 from pgoapi.utilities import to_camel_case, get_time, get_format_time_diff, Rand48, long_to_bytes, generateLocation1, generateLocation2, generateRequestHash, f2i
 
 from . import protos
-from POGOProtos.Networking.Envelopes_pb2 import RequestEnvelope
-from POGOProtos.Networking.Envelopes_pb2 import ResponseEnvelope
-from POGOProtos.Networking.Requests_pb2 import RequestType
-import Signature_pb2
+from pogoprotos.networking.envelopes import request_envelope_pb2
+from pogoprotos.networking.envelopes import response_envelope_pb2
+from pogoprotos.networking.envelopes import signature_pb2
+from pogoprotos.networking.requests import request_type_pb2
+
 
 
 class RpcApi:
@@ -168,7 +169,7 @@ class RpcApi:
     def _build_main_request(self, subrequests, player_position=None):
         self.log.debug('Generating main RPC request...')
 
-        request = RequestEnvelope()
+        request = request_envelope_pb2.RequestEnvelope()
         request.status_code = 2
         request.request_id = self.get_rpc_id()
 
@@ -194,7 +195,7 @@ class RpcApi:
             ticket_serialized = request.auth_info.SerializeToString() #Sig uses this when no auth_ticket available
 
         if self._signature_gen:
-            sig = Signature_pb2.Signature()
+            sig = signature_pb2.Signature()
 
             sig.location_hash1 = generateLocation1(ticket_serialized, request.latitude, request.longitude, request.altitude)
             sig.location_hash2 = generateLocation2(request.latitude, request.longitude, request.altitude)
@@ -203,15 +204,14 @@ class RpcApi:
                 hash = generateRequestHash(ticket_serialized, req.SerializeToString())
                 sig.request_hash.append(hash)
 
-            sig.unk22 = os.urandom(32)
+            sig.session_hash = os.urandom(32)
             sig.timestamp = get_time(ms=True)
             sig.timestamp_since_start = get_time(ms=True) - RpcApi.START_TIME
 
             signature_proto = sig.SerializeToString()
 
-            u6 = request.unknown6.add()
-            u6.request_type = 6
-            u6.unknown2.unknown1 = self._generate_signature(signature_proto)
+            request.unknown6.request_type = 6
+            request.unknown6.unknown2.encrypted_signature = self._generate_signature(signature_proto)
 
         # unknown stuff
         request.unknown12 = 989
@@ -239,7 +239,7 @@ class RpcApi:
     def _build_main_request_orig(self, subrequests, player_position=None):
         self.log.debug('Generating main RPC request...')
 
-        request = RequestEnvelope()
+        request = request_envelope_pb2.RequestEnvelope()
         request.status_code = 2
         request.request_id = self.get_rpc_id()
 
@@ -274,10 +274,10 @@ class RpcApi:
                 entry_id = list(entry.items())[0][0]
                 entry_content = entry[entry_id]
 
-                entry_name = RequestType.Name(entry_id)
+                entry_name = request_type_pb2.RequestType.Name(entry_id)
 
-                proto_name = to_camel_case(entry_name.lower()) + 'Message'
-                proto_classname = 'POGOProtos.Networking.Requests.Messages_pb2.' + proto_name
+                proto_name = entry_name.lower() + '_message_pb2.' + to_camel_case(entry_name.lower()) + 'Message'
+                proto_classname = 'pogoprotos.networking.requests.messages.' + proto_name
                 subrequest_extension = self.get_class(proto_classname)()
 
                 self.log.debug("Subrequest class: %s", proto_classname)
@@ -339,7 +339,7 @@ class RpcApi:
             self.log.warning('Empty server response!')
             return False
 
-        response_proto = ResponseEnvelope()
+        response_proto = response_envelope_pb2.ResponseEnvelope()
         try:
             response_proto.ParseFromString(response_raw.content)
         except message.DecodeError as e:
@@ -381,9 +381,9 @@ class RpcApi:
             else:
                 entry_id = list(request_entry.items())[0][0]
 
-            entry_name = RequestType.Name(entry_id)
-            proto_name = to_camel_case(entry_name.lower()) + 'Response'
-            proto_classname = 'POGOProtos.Networking.Responses_pb2.' + proto_name
+            entry_name = request_type_pb2.RequestType.Name(entry_id)
+            proto_name = entry_name.lower() + '_response_pb2.' + to_camel_case(entry_name.lower()) + 'Response'
+            proto_classname = 'pogoprotos.networking.responses.' + proto_name
 
             self.log.debug("Parsing class: %s", proto_classname)
 

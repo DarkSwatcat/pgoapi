@@ -38,7 +38,7 @@ from pgoapi.utilities import parse_api_endpoint
 from pgoapi.exceptions import AuthException, NotLoggedInException, ServerBusyOrOfflineException, NoPlayerPositionSetException, EmptySubrequestChainException, AuthTokenExpiredException, ServerApiEndpointRedirectException, UnexpectedResponseException
 
 from . import protos
-from POGOProtos.Networking.Requests_pb2 import RequestType
+from pogoprotos.networking.requests import request_type_pb2
 
 logger = logging.getLogger(__name__)
 
@@ -132,7 +132,7 @@ class PGoApi:
             getattr(request, func)(_call_direct=True, **kwargs )
             return request.call()
 
-        if func.upper() in RequestType.keys():
+        if func.upper() in request_type_pb2.RequestType.keys():
             return function
         else:
             raise AttributeError
@@ -270,7 +270,7 @@ class PGoApiRequest:
 
     def list_curr_methods(self):
         for i in self._req_method_list:
-            print("{} ({})".format(RequestType.Name(i), i))
+            print("{} ({})".format(request_type_pb2.RequestType.Name(i), i))
 
     def get_position(self):
         return (self._position_lat, self._position_lng, self._position_alt)
@@ -293,16 +293,16 @@ class PGoApiRequest:
 
             name = func.upper()
             if kwargs:
-                self._req_method_list.append({RequestType.Value(name): kwargs})
+                self._req_method_list.append({request_type_pb2.RequestType.Value(name): kwargs})
                 self.log.info("Adding '%s' to RPC request including arguments", name)
                 self.log.debug("Arguments of '%s': \n\r%s", name, kwargs)
             else:
-                self._req_method_list.append(RequestType.Value(name))
+                self._req_method_list.append(request_type_pb2.RequestType.Value(name))
                 self.log.info("Adding '%s' to RPC request", name)
 
             return self
 
-        if func.upper() in RequestType.keys():
+        if func.upper() in request_type_pb2.RequestType.keys():
             return function
         else:
             raise AttributeError
